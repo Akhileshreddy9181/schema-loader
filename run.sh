@@ -19,6 +19,3 @@ case $1 in
     ;;
 esac
 
-mysql -h $(aws ssm get-parameter --name ${env}.rds.endpoint --with-decryption | jq '.Parameter.Value' | sed -e 's/"//g') -u$(aws ssm get-parameter --name ${env}.rds.user --with-decryption | jq '.Parameter.Value' | sed -e 's/"//g') -p$(aws ssm get-parameter --name ${env}.rds.pass --with-decryption | jq '.Parameter.Value' | sed -e 's/"//g') < /app/schema/{{2}}.sql
-
-
